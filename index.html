@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unwrap</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Unwrap</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="#" data-target="vista-buscar">Search</a></li>
+                <li><a href="#" data-target="vista-listas">Lists</a></li>
+                <li><a href="#" data-target="vista-signin">Sign in</a></li>
+                <li><a href="#" data-target="vista-wrapped">Wrapped</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Search -->
+        <section id="vista-buscar" class="vista">
+            <input type="text" id="input-buscar" placeholder="Search a movie or show...">
+            <div id="resultados" class="grid-pelis"></div>
+        </section>
+
+        <!-- Lists (rated movies/shows) -->
+        <section id="vista-listas" class="vista oculto">
+            <h2>Your lists</h2>
+            <div id="mis-pelis" class="grid-pelis"></div>
+        </section>
+
+        <!-- Wrapped -->
+        <section id="vista-wrapped" class="vista oculto">
+            <h2>Your Wrapped</h2>
+            <div id="wrapped-contenido"></div>
+        </section>
+
+        <!-- Sign in (placeholder, no real auth yet) -->
+        <section id="vista-signin" class="vista oculto">
+            <h2>Sign in</h2>
+            <p class="placeholder-note">Coming soon — accounts will be added in v2.</p>
+        </section>
+
+    </main>
+
+    <script src="buscar.js"></script>
+    <script src="puntuar.js"></script>
+    <script src="resumen.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
