@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -9,25 +9,27 @@
 </head>
 
 <body>
+
     <header>
-        <h1>Unwrap</h1>
-        <nav>
-            <ul class="menu">
-                <li><a href="#" data-target="vista-buscar">Search</a></li>
-                <li><a href="#" data-target="vista-listas">Lists</a></li>
-                <li><a href="#" data-target="vista-signin">Sign in</a></li>
-                <li><a href="#" data-target="vista-wrapped">Wrapped</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <h1>Unwrap</h1>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" data-target="vista-buscar" class="activo">Search</a></li>
+                    <li><a href="#" data-target="vista-listas">Lists</a></li>
+                    <li><a href="#" data-target="vista-wrapped">Wrapped</a></li>
+                    <li><a href="#" data-target="vista-signin">Sign in</a></li>
+                </ul>
+            </nav>
+            <section id="vista-buscar" class="vista">
+                <input type="text" id="input-buscar" placeholder="Search a movie or show...">
+                <div id="resultados" class="grid-pelis"></div>
+            </section>
+        </div>
     </header>
 
     <main>
 
-        <!-- Search -->
-        <section id="vista-buscar" class="vista">
-            <input type="text" id="input-buscar" placeholder="Search a movie or show...">
-            <div id="resultados" class="grid-pelis"></div>
-        </section>
 
         <!-- Lists (rated movies/shows) -->
         <section id="vista-listas" class="vista oculto">

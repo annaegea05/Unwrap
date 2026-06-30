@@ -1,0 +1,252 @@
+/* ============================================
+   Unwrap â€” design tokens (modern)
+   ============================================ */
+:root {
+  --bg: #120E1A;
+  --bg-raised: #1C1726;
+  --bg-raised-2: #261F33;
+  --coral: #FF6B5B;
+  --violet: #8B5CF6;
+  --gradient: linear-gradient(135deg, var(--coral), var(--violet));
+  --text: #F5F3F7;
+  --muted: #8C849C;
+  --line: rgba(245, 243, 247, 0.08);
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+/* ============================================
+   Header â€” single row: logo, nav, search
+   ============================================ */
+header {
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.header-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+header h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  margin: 0;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+header nav {
+  flex-shrink: 0;
+}
+
+/* search bar lives in the header now, takes remaining space */
+header #vista-buscar {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+/* results drop down from the search bar, floating over the page */
+header #vista-buscar #resultados {
+  display: grid;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  width: 360px;
+  max-width: 90vw;
+  max-height: 70vh;
+  overflow-y: auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+header #vista-buscar #resultados:empty {
+  display: none; /* hide the empty box until there are actual results */
+}
+
+/* pill navigation */
+nav .menu {
+  list-style: none;
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 6px;
+  background: var(--bg-raised);
+  border-radius: 999px;
+  width: fit-content;
+}
+
+nav .menu li a {
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 999px;
+  transition: color 0.15s ease, background 0.2s ease;
+}
+
+nav .menu li a:hover {
+  color: var(--text);
+}
+
+nav .menu li a.activo {
+  color: var(--bg);
+  background: var(--gradient);
+}
+
+/* ============================================
+   Main / sections
+   ============================================ */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+
+.vista.oculto {
+  display: none;
+}
+
+.vista h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  margin: 0 0 24px;
+}
+
+/* ============================================
+   Search input
+   ============================================ */
+#input-buscar {
+  width: 100%;
+  min-width: 100px;
+  max-width: 360px;
+  display: block;
+  padding: 12px 18px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#input-buscar::placeholder {
+  color: var(--muted);
+}
+
+#input-buscar:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--violet);
+}
+
+/* ============================================
+   Movie / show grid + cards
+   (ready for JS to populate with .pelicula-card)
+   ============================================ */
+.grid-pelis {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.pelicula-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pelicula-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.25);
+}
+
+.pelicula-card img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.pelicula-card .titulo {
+  padding: 12px 14px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pelicula-card .estrellas {
+  padding: 0 14px 14px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================
+   Placeholder note (Sign in, empty states)
+   ============================================ */
+.placeholder-note {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 560px) {
+  .header-container { flex-wrap: wrap; gap: 16px; }
+  header #vista-buscar { order: 3; flex-basis: 100%; }
+  header h1 { font-size: 22px; }
+  nav .menu { flex-wrap: wrap; border-radius: 20px; }
+  main { padding: 28px 20px 60px; }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .pelicula-card { transition: none; }
+}
